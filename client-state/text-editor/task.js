@@ -1,13 +1,15 @@
-const text = document.getElementById('editor');
-const btn = document.querySelector('.btn__delete');
+const textArea = document.getElementById("editor");
+const clearBtn = document.getElementById("clear__btn");
 
-text.value = localStorage.getItem('text');
-text.oninput = () => {
-      localStorage.setItem('text', text.value)
-    };
+window.onload = (e) => {
+   textArea.value = localStorage.getItem("text");
+}
 
+textArea.addEventListener("input", () => {
+   localStorage.setItem("text", textArea.value);
+})
 
-    btn.onclick = () => {
-    text.value = '';
-    localStorage.removeItem('text');
-    }
+clearBtn.addEventListener ("click", (e) => {
+   e.preventDefault();
+   textArea.value = "";
+})
