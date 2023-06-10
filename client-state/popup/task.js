@@ -1,20 +1,16 @@
-const modal = document.getElementById("subscribe-modal");
-const modalClose = document.querySelector(".modal__close");
+const popupClose = document.getElementsByClassName("modal__close_times");
+const popup = document.getElementById("subscribe-modal");
 
-modal.classList.add('modal_active');
+window.onload = (e) => {
+   if (!document.cookie.includes ("closed=true")) {
+      popup.classList.add("modal_active");
+   }
+}
 
-modalClose.onclick = () => {
-        document.cookie = "modal__close=yes; path=/; expires=";
-        modal.classList.remove('modal_active');
-     };
+function clickAction () {
+   popup.classList.remove("modal_active");
+   document.cookie = "closed=" + encodeURIComponent("true");
+   console.log(document.cookie);
+}
 
-
-     function getCookie(name) {
-        let pairs = document.cookie.split('; ');
-        let cookie = pairs.find(p => p.startsWith(name + '='));
-        return cookie.substring(name.length+1)
-    }        
-
-    if (getCookie('modal__close') == 'yes') {
-        modal.classList.remove('modal_active');
-    }
+popupClose.item(0).onclick = clickAction;
