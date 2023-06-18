@@ -1,14 +1,14 @@
-let textarea = document.getElementById('editor');
+"use strict"
 
-textarea.addEventListener('change', (e) => {  
-  localStorage.setItem('editor', e.currentTarget.value);
-})
+const editor = document.getElementById('editor');
+const buttonClear = document.querySelector('.button__clear');
 
-textarea.textContent = localStorage.getItem('editor');
+editor.value = localStorage.getItem('editor');
+editor.addEventListener('input', () => {
+  localStorage.setItem('editor', editor.value);
+});
 
-const button = document.querySelector('button');
-
-button.addEventListener('click', e => {
+buttonClear.addEventListener('click', () => {
   localStorage.removeItem('editor');
-  textarea.value = '';
-})
+  editor.value = '';
+});
