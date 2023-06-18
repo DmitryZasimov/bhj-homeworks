@@ -1,19 +1,14 @@
-const clearButton = document.querySelector('.clear_button');
-const deleteButton = document.querySelector('.delete_button');
-const editor = document.getElementById('editor');
-let textLocalStorage = localStorage.getItem('editorText');
+let textarea = document.getElementById('editor');
 
-editor.value = textLocalStorage;
-editor.addEventListener('input', function () {
-  localStorage.setItem('editorText', editor.value);
-});
+textarea.addEventListener('change', (e) => {  
+  localStorage.setItem('editor', e.currentTarget.value);
+})
 
-clearButton.addEventListener('click', function () {
-  editor.value = '';
-  localStorage.removeItem('editorText');
-});
+textarea.textContent = localStorage.getItem('editor');
 
-deleteButton.addEventListener('click', function () {
-  editor.value = '';
-  localStorage.clear();
-});
+const button = document.querySelector('button');
+
+button.addEventListener('click', e => {
+  localStorage.removeItem('editor');
+  textarea.value = '';
+})
